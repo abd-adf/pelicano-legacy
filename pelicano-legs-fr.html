@@ -553,8 +553,8 @@
         <div class="success-icon">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3>Merci et à bientôt !</h3>
-        <p>Vous recevrez votre documentation dans les prochains jours.<br>N'hésitez pas à contacter Ruth directement.</p>
+        <h3>Merci beaucoup !</h3>
+        <p>Nous vous recontacterons très prochainement.</p>
       </div>
     </div>
 
@@ -694,4 +694,6 @@
       if (res.ok) {
         form.style.display = 'none';
         successMsg.classList.add('visible');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit' });
       } else {

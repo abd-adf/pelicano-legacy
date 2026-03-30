@@ -542,8 +542,8 @@
         <div class="success-icon">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
-        <h3>Bedankt en tot binnenkort!</h3>
-        <p>Je ontvangt je documentatie in de komende dagen.<br>Aarzel niet om Ruth rechtstreeks te contacteren.</p>
+        <h3>Hartelijk dank!</h3>
+        <p>We nemen zo spoedig mogelijk contact met u op.</p>
       </div>
     </div>
 
@@ -683,6 +683,8 @@
       if (res.ok) {
         form.style.display = 'none';
         successMsg.classList.add('visible');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_submit' });
       } else {
         btn.disabled = false;
         btn.textContent = 'IK BEVESTIG';
