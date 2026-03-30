@@ -458,8 +458,9 @@
       <h2>Vraag gratis je documentatie<br>aan in alle vertrouwen</h2>
       <p class="hero-form-lead">Zonder verbintenis · Gratis documentatie · Persoonlijk antwoord van Ruth</p>
 
-      <form id="contact-form" action="https://formspree.io/f/xjgaoyzj" method="POST" novalidate>
-        <input type="text" name="_gotcha" style="display:none">
+      <form id="contact-form" name="pelicano-legs-nl" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="pelicano-legs-nl">
+        <input type="text" name="bot-field" style="display:none">
 
         <div class="field-group">
           <label for="aanspreektitel">Aanspreektitel <span class="required-star">*</span></label>
@@ -673,10 +674,10 @@
     btn.textContent = 'Verzenden…';
 
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('/', {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
       });
       if (res.ok) {
         form.style.display = 'none';
