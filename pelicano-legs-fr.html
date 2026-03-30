@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Téléchargez la brochure testament – Fondation Pelicano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #EA3326;
+      --red-dark:  #c42519;
+      --red-light: #FFF4F3;
+      --dark:      #1d1d1b;
+      --muted:     #525250;
+      --border:    rgba(0,0,0,.08);
+      --bg:        #f4f4f2;
+      --white:     #ffffff;
+      --max-w:     1080px;
+      --radius:    24px;
+      --gap:       48px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: var(--dark); background: var(--bg);
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif; font-weight: 700;
+      color: var(--white); background: var(--red);
+      border: none; border-radius: 999px; cursor: pointer;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      line-height: 1; white-space: nowrap;
+    }
+    .btn:hover  { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(234,51,38,.35); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-md   { font-size: 1rem;   padding: 13px 28px; }
+    .btn-full { font-size: 1.05rem; padding: 18px 32px; width: 100%; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 16px 32px;
+    }
+    .nav-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logos { display: flex; align-items: center; gap: 20px; }
+    .nav-logo { height: 120px; width: auto; }
+    .nav-logo-frp { height: 96px; width: auto; }
+    .nav-lang {
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Inter', sans-serif; font-size: .9rem; font-weight: 600;
+      color: var(--dark); text-decoration: none;
+      border: 1.5px solid var(--border); border-radius: 999px;
+      padding: 7px 14px;
+      transition: border-color .15s, background .15s;
+    }
+    .nav-lang:hover { border-color: var(--dark); background: var(--bg); }
+    .nav-lang .flag { font-size: 1.15rem; line-height: 1; }
+
+    /* ══════════════════════════════════════
+       HERO — 2 colonnes : copy | form
+    ══════════════════════════════════════ */
+    .hero {
+      min-height: calc(100vh - 65px);
+      background-image:
+        linear-gradient(105deg,
+          rgba(0,0,0,.50) 0%,
+          rgba(0,0,0,.38) 48%,
+          rgba(0,0,0,.15) 100%),
+        var(--hero-bg, url('https://adfinitas.b-cdn.net/pelicano/LP/testament/photo_header.jpg'));
+      background-size: cover; background-position: center 20%;
+      display: flex; align-items: center;
+      padding: 60px 32px;
+    }
+    @media (max-width: 860px) {
+      .hero {
+        background-image:
+          linear-gradient(180deg,
+            rgba(0,0,0,.52) 0%,
+            rgba(0,0,0,.38) 50%,
+            rgba(0,0,0,.18) 100%),
+          url('https://adfinitas.b-cdn.net/pelicano/LP/testament/photo_header_mobile.jpg');
+        background-size: cover;
+        background-position: center 15%;
+      }
+    }
+    .hero-inner {
+      max-width: var(--max-w); margin: 0 auto; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 56px;
+      align-items: center;
+    }
+
+    /* ── Colonne gauche (copy) ── */
+    .hero-copy {}
+    .hero-tagline {
+      display: inline-block;
+      font-size: .8rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: #ffffff; margin-bottom: 20px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.6);
+    }
+    .hero-copy h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; line-height: 1.15;
+      color: var(--white); margin-bottom: 24px; letter-spacing: -.02em;
+      text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    }
+    .hero-copy p {
+      font-size: 1rem; line-height: 1.75; font-weight: 700;
+      color: #ffffff; max-width: 420px; margin-bottom: 32px;
+      text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+
+    /* Bullets mission */
+    .hero-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .hero-bullets li {
+      display: flex; align-items: center; gap: 12px;
+      font-size: .95rem; font-weight: 700; color: #ffffff;
+      text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    }
+    .hero-bullet-dot {
+      width: 8px; height: 8px; min-width: 8px;
+      background: var(--red); border-radius: 50%;
+    }
+
+    /* Ruth card */
+    .hero-ruth {
+      margin-top: 36px;
+      background: rgba(255,255,255,.96);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex; align-items: stretch;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25);
+    }
+    .hero-ruth-photo {
+      width: 156px; min-width: 156px;
+      flex-shrink: 0;
+    }
+    .hero-ruth-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; filter: brightness(1.15) contrast(0.95); }
+    .hero-ruth-text {
+      padding: 16px 18px;
+      font-size: .88rem; font-weight: 400; color: var(--muted); line-height: 1.6;
+      display: flex; flex-direction: column; justify-content: center; gap: 4px;
+    }
+    .hero-ruth-text strong { font-weight: 700; color: var(--dark); font-size: .95rem; line-height: 1.3; }
+    .hero-ruth-text a { color: var(--red); font-weight: 500; text-decoration: none; }
+    .hero-ruth-text a:hover { text-decoration: underline; }
+
+    /* ── Colonne droite (form card) ── */
+    .hero-form-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.28);
+    }
+    .hero-form-card h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem; font-weight: 800; line-height: 1.2;
+      letter-spacing: -.01em; margin-bottom: 4px; color: var(--dark);
+      text-transform: uppercase;
+    }
+    .hero-form-lead {
+      font-size: .95rem; color: var(--muted); font-weight: 400;
+      margin-bottom: 22px; line-height: 1.5;
+    }
+
+    /* Form fields */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .field-group { margin-bottom: 10px; }
+    .field-group label {
+      display: block; font-size: .8rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 5px;
+    }
+    .required-star { color: var(--red); margin-left: 1px; }
+    .field-group input,
+    .field-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid rgba(0,0,0,.1); border-radius: 10px;
+      background: var(--bg);
+      font-family: 'Inter', sans-serif; font-size: 16px; color: var(--dark);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .field-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' fill='none'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%236b6b69' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
+    }
+    .field-group input:focus,
+    .field-group select:focus {
+      border-color: var(--red); box-shadow: 0 0 0 3px rgba(234,51,38,.1); background: var(--white);
+    }
+    .field-group input.error,
+    .field-group select.error { border-color: var(--red); background: var(--red-light); }
+    .field-group input::placeholder { color: #c4c4c2; }
+
+    .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 2px; }
+    .radio-option { cursor: pointer; }
+    .radio-option input[type="radio"] { display: none; }
+    .radio-box {
+      display: flex; align-items: center; gap: 9px;
+      padding: 12px 14px;
+      border: 1.5px solid rgba(0,0,0,.1); border-radius: 10px;
+      background: var(--bg); font-size: 16px; font-weight: 500;
+      color: var(--dark); transition: border-color .15s, background .15s, box-shadow .15s;
+    }
+    .radio-box svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: stroke .15s; }
+    .radio-option:hover .radio-box { border-color: var(--red); background: var(--red-light); }
+    .radio-option:hover .radio-box svg { stroke: var(--red); }
+    .radio-option input:checked + .radio-box {
+      border-color: var(--red); background: var(--red-light);
+      box-shadow: 0 0 0 3px rgba(234,51,38,.1);
+    }
+    .radio-option input:checked + .radio-box svg { stroke: var(--red); }
+
+    .privacy-note {
+      font-size: .85rem; color: var(--muted); font-weight: 400;
+      text-align: center; margin: 14px 0 18px; line-height: 1.5;
+    }
+    .privacy-note a { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Succès inline */
+    .success-box {
+      display: none;
+      background: #F0FAF2; border: 1.5px solid #7CC98A;
+      border-radius: 14px; padding: 32px 24px; text-align: center;
+    }
+    .success-box.visible { display: block; }
+    .success-icon {
+      width: 48px; height: 48px; background: #45A85A; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    }
+    .success-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-box h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; color: #2D6E3F; margin-bottom: 6px; }
+    .success-box p  { font-size: 1rem; color: #3F7A52; font-weight: 400; line-height: 1.6; }
+
+    /* ══════════════════════════════════
+       CONTENU SOUS LE HERO
+    ══════════════════════════════════ */
+    .page { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    .section { margin: var(--gap) 0; }
+
+    .card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 52px; box-shadow: 0 2px 16px rgba(0,0,0,.05);
+    }
+
+    /* Mission band */
+    .mission-band {
+      background: var(--red); border-radius: var(--radius);
+      padding: 56px 52px; text-align: center; color: var(--white);
+      box-shadow: 0 8px 40px rgba(234,51,38,.22);
+    }
+    .mission-eyebrow {
+      font-size: .85rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 14px;
+    }
+    .mission-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.18;
+      margin-bottom: 22px; letter-spacing: -.01em;
+    }
+    .mission-body { font-size: 1.1rem; line-height: 1.8; opacity: .95; font-weight: 400; }
+
+    /* Piliers */
+    .pillars-eyebrow {
+      font-size: .85rem; font-weight: 600; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+    }
+    .pillars-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.45rem); font-weight: 700;
+      margin-bottom: 28px; line-height: 1.3;
+    }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .pillar {
+      background: var(--bg); border-radius: 14px;
+      padding: 18px 16px; display: flex; align-items: center; gap: 11px;
+      transition: background .18s;
+    }
+    .pillar:hover { background: var(--red-light); }
+    .pillar-icon {
+      width: 30px; height: 30px; min-width: 30px;
+      background: var(--red-light); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pillar-icon svg { width: 13px; height: 13px; stroke: var(--red); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pillar-label { font-size: .95rem; font-weight: 500; line-height: 1.3; }
+
+    /* Story */
+    .frieke-quote {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 700;
+      line-height: 1.35; color: var(--red); margin-bottom: 24px;
+    }
+    .story-body p { font-size: 1.05rem; line-height: 1.85; font-weight: 400; }
+    .story-body p + p { margin-top: 16px; }
+
+    /* Ruth */
+    .ruth-quote {
+      margin-top: 34px; border-top: 1px solid var(--border); padding-top: 34px;
+      display: flex; gap: 22px; align-items: flex-start;
+    }
+    .ruth-photo {
+      width: 240px; min-width: 240px; height: auto;
+      border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      align-self: stretch;
+    }
+    .ruth-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(1.15) contrast(0.95); }
+    .ruth-text { font-size: 1.05rem; line-height: 1.8; font-style: italic; font-weight: 400; margin-bottom: 12px; }
+    .ruth-sig  { font-size: .95rem; font-weight: 600; color: var(--red); }
+    .ruth-contact { margin-top: 3px; font-size: .95rem; color: var(--muted); }
+    .ruth-contact a { color: var(--red); font-weight: 500; }
+
+    /* Footer */
+    footer {
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 48px 32px 32px; margin-top: 16px;
+    }
+    .footer-inner { max-width: 760px; margin: 0 auto; }
+    .footer-logos { display: flex; align-items: center; gap: 28px; margin-bottom: 22px; }
+    .footer-logo  { height: 90px; width: auto; }
+    .footer-logo-frp { height: 72px; width: auto; }
+    .footer-legal { font-size: .92rem; color: var(--muted); line-height: 1.8; font-weight: 400; }
+    .footer-legal p + p { margin-top: 4px; }
+    .footer-legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+    .footer-legal a:hover { color: var(--dark); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      padding-top: 18px; border-top: 1px solid var(--border);
+      font-size: .88rem; color: var(--muted); margin-top: 22px;
+    }
+
+    /* Sticky mobile */
+    .sticky-cta {
+      display: none; position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 14px 20px env(safe-area-inset-bottom);
+      z-index: 150; box-shadow: 0 -4px 20px rgba(0,0,0,.07);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .hero { padding: 48px 24px; }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-copy h1 { font-size: clamp(2rem, 6vw, 2.6rem); }
+      .hero-copy p  { max-width: 100%; }
+      .hero-form-card { padding: 32px 24px; }
+      /* Nav : réduit les logos */
+      .nav-logo { height: 80px; }
+      .nav-logo-frp { height: 64px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --gap: 28px; --radius: 18px; }
+      .card, .mission-band { padding: 32px 24px; }
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+      /* Ruth hero card : photo plus petite sur mobile */
+      .hero-ruth-photo { width: 100px; min-width: 100px; }
+      /* Ruth section : colonne, photo centrée et taille raisonnable */
+      .ruth-quote { flex-direction: column; align-items: center; text-align: center; }
+      .ruth-photo { width: 100%; height: 280px; min-width: unset; border-radius: 16px; }
+      .ruth-contact { text-align: center; }
+      .sticky-cta { display: block; }
+      body { padding-bottom: 80px; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 380px) {
+      .pillars-grid { grid-template-columns: 1fr; }
+      .nav-logo { height: 60px; }
+      .nav-logo-frp { height: 48px; }
+      .nav-lang { font-size: .8rem; padding: 5px 10px; }
+      .hero-ruth-photo { width: 80px; min-width: 80px; }
+    }
+  </style>
+  <script>
+    (function() {
+      const utm = new URLSearchParams(window.location.search).get('utm_content');
+      if (utm === 'image1') {
+        document.documentElement.style.setProperty(
+          '--hero-bg',
+          "url('https://adfinitas.b-cdn.net/pelicano/LP/header_V2.jpg')"
+        );
+      }
+    })();
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logos">
+      <a href="https://www.pelicano.be">
+        <img class="nav-logo" src="https://adfinitas.b-cdn.net/pelicano/LP/testament/PELICANO-LOGO-FR-RGB-RED.svg" alt="Pelicano">
+      </a>
+      <img class="nav-logo-frp" src="https://adfinitas.b-cdn.net/pelicano/LP/testament/Transparent-FRPprogramm-RGB-COLO.png" alt="Fondation Reine Paola">
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a class="nav-lang" href="#" title="Bekijk deze pagina in het Nederlands">
+        <span class="flag">🇧🇪</span> NL
+      </a>
+      <a class="btn btn-md nav-cta" href="#suite">En savoir plus</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO 2 COLONNES ══ -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+
+    <!-- GAUCHE : copy -->
+    <div class="hero-copy">
+      <span class="hero-tagline">Fondation Pelicano · Legs &amp; Testaments</span>
+      <h1>Inscrivez Pelicano<br>sur votre testament.</h1>
+      <p>Un geste discret, confidentiel et sans engagement. Recevez gratuitement notre guide pour comprendre comment agir.</p>
+
+      <ul class="hero-bullets">
+        <li><span class="hero-bullet-dot"></span>Un monde où chaque enfant grandit sans honte ni peur du rejet</li>
+        <li><span class="hero-bullet-dot"></span>Un monde où l'enfant est libre de rêver et de construire son avenir</li>
+        <li><span class="hero-bullet-dot"></span>Votre legs nous donne de formidables moyens d'agir concrètement</li>
+      </ul>
+
+      <div class="hero-ruth">
+        <div class="hero-ruth-photo">
+          <img src="https://adfinitas.b-cdn.net/pelicano/LP/testament/65643745-0-ruth-1.webp" alt="Ruth Dierickx">
+        </div>
+        <div class="hero-ruth-text">
+          <strong>Ruth Dierickx — Responsable des successions</strong>
+          <a href="tel:+32475336838">+32 475 33 68 38</a>
+          <a href="mailto:ruth.dierickx@queenpaolafoundation.be">ruth.dierickx@queenpaolafoundation.be</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DROITE : formulaire -->
+    <div class="hero-form-card">
+      <h2>Recevez votre documentation<br>gratuite en toute confidentialité</h2>
+      <p class="hero-form-lead">Sans engagement · Documentation gratuite · Réponse personnelle de Ruth</p>
+
+      <!--
+        ╔══════════════════════════════════════════════════════════════╗
+        ║  FORMSPREE — remplace YOUR_FORM_ID par ton ID réel          ║
+        ║  1. https://formspree.io → créer un compte gratuit          ║
+        ║  2. New Form → copie l'ID (ex: xwkgjbzq)                   ║
+        ║  3. Remplace YOUR_FORM_ID ci-dessous                        ║
+        ╚══════════════════════════════════════════════════════════════╝
+      -->
+      <form id="contact-form" action="https://formspree.io/f/xjgaoyzj" method="POST" novalidate>
+        <input type="text" name="_gotcha" style="display:none">
+
+        <div class="field-group">
+          <label for="civilite">Civilité <span class="required-star">*</span></label>
+          <select id="civilite" name="civilite" required>
+            <option value="" disabled selected>Sélectionner…</option>
+            <option value="Madame">Madame</option>
+            <option value="Monsieur">Monsieur</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="nom">Nom <span class="required-star">*</span></label>
+            <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+          </div>
+          <div class="field-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Marie">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="adresse">Adresse <span class="required-star">*</span></label>
+          <input type="text" id="adresse" name="adresse" placeholder="Rue de l'Église 12" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="cp">Code postal <span class="required-star">*</span></label>
+            <input type="text" id="cp" name="code_postal" placeholder="1000" required inputmode="numeric">
+          </div>
+          <div class="field-group">
+            <label for="ville">Ville <span class="required-star">*</span></label>
+            <input type="text" id="ville" name="ville" placeholder="Bruxelles" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="marie@exemple.be">
+          </div>
+          <div class="field-group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="telephone" placeholder="+32 4xx xx xx xx">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Recevoir la brochure par <span class="required-star">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="envoi" value="Email" required>
+              <span class="radio-box">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                E-mail
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="envoi" value="Courrier">
+              <span class="radio-box">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Courrier postal
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <p class="privacy-note">
+          Données utilisées uniquement pour l'envoi de documentation · jamais transmises à des tiers ·
+          <a href="https://pelicano.be/fr/privacy-policy" target="_blank" rel="noopener">Privacy policy</a>
+        </p>
+
+        <button type="submit" class="btn btn-full" id="submit-btn">JE VALIDE</button>
+      </form>
+
+      <div class="success-box" id="success-msg">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Merci et à bientôt !</h3>
+        <p>Vous recevrez votre documentation dans les prochains jours.<br>N'hésitez pas à contacter Ruth directement.</p>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ══ CONTENU SOUS LE HERO ══ -->
+<main class="page" id="suite">
+
+  <!-- Mission -->
+  <div class="section">
+    <div class="mission-band">
+      <p class="mission-eyebrow">Notre vision</p>
+      <p class="mission-title">Un monde sans pauvreté infantile…</p>
+      <p class="mission-body">
+        C'est un monde où chaque enfant grandit sans honte ni peur du rejet. Un monde où l'enfant n'est plus marqué par le stress aigu de la différence, ni animé d'une colère sourde face aux injustices.<br><br>
+        Dans ce monde, un enfant n'est pas condamné à rester pauvre toute sa vie. Il est libre de rêver, d'apprendre et de construire son avenir.
+      </p>
+    </div>
+  </div>
+
+  <!-- Piliers -->
+  <div class="section">
+    <div class="card">
+      <p class="pillars-eyebrow">Ce que nous faisons</p>
+      <h2 class="pillars-title">Nos six piliers d'action pour un impact durable sur la vie des enfants</h2>
+      <div class="pillars-grid">
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+          <span class="pillar-label">Loisir, sport et culture</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <span class="pillar-label">Soins médicaux</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <span class="pillar-label">Hygiène</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+          <span class="pillar-label">Enseignement</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <span class="pillar-label">Vêtements</span>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+          <span class="pillar-label">Alimentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Frieke + Ruth -->
+  <div class="section">
+    <div class="card">
+      <p class="frieke-quote">« Les camarades de classe de Frieke ne voulaient plus s'asseoir à côté d'elle »</p>
+      <div class="story-body">
+        <p>Un jour, Madame Anje demande aux parents de Frieke s'ils sont d'accord pour qu'elle prenne une douche à l'école et qu'on lui fournisse des vêtements de rechange. En raison de l'odeur forte, notamment de cigarettes, les autres enfants ne veulent plus s'asseoir à côté d'elle…</p>
+        <p>Grandir dans la pauvreté, c'est souvent grandir en marge de la société. Ses conséquences sur les enfants sont multiples. Ensemble, nous pouvons agir et briser le cercle vicieux de la pauvreté.</p>
+      </div>
+      <div class="ruth-quote">
+        <div class="ruth-photo">
+          <img src="https://adfinitas.b-cdn.net/pelicano/LP/testament/65643745-0-ruth-1.webp" alt="Ruth Dierickx">
+        </div>
+        <div>
+          <p class="ruth-text">« Avec vous, nous pouvons faire plus que de rêver d'un monde sans pauvreté infantile : nous pouvons le construire. Les personnes qui choisissent de nous inscrire sur leur testament nous donnent de formidables moyens d'agir concrètement. Cela vous intéresse ? Obtenez gratuitement notre documentation via le formulaire ou contactez-moi directement, je pourrai vous accompagner en toute confidentialité. Merci et à bientôt peut-être. Ruth. »</p>
+          <p class="ruth-sig">Ruth Dierickx — Responsable des successions</p>
+          <p class="ruth-contact">
+            <a href="tel:+32475336838">+32 475 33 68 38</a> ·
+            <a href="mailto:ruth.dierickx@queenpaolafoundation.be">ruth.dierickx@queenpaolafoundation.be</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logos">
+      <img class="footer-logo" src="https://adfinitas.b-cdn.net/pelicano/LP/testament/PELICANO-LOGO-FR-RGB-RED.svg" alt="Pelicano">
+      <img class="footer-logo-frp" src="https://adfinitas.b-cdn.net/pelicano/LP/testament/FRPprogramm-RGB-COLO.jpg" alt="Fondation Reine Paola">
+    </div>
+    <div class="footer-legal">
+      <p><strong>Pelicano</strong> — Un programme de la Fondation Reine Paola</p>
+      <p>Siège social — Avenue Louise 367, 1050 Bruxelles · Adresse administrative — Baron Ruzettelaan 3 bus 3.2b, 8310 Brugge</p>
+      <p style="margin-top:8px;">
+        <a href="mailto:ruth.dierickx@queenpaolafoundation.be">ruth.dierickx@queenpaolafoundation.be</a> · 0475 33 68 38 ·
+        <a href="https://www.pelicano.be" target="_blank" rel="noopener">www.pelicano.be</a>
+      </p>
+      <p style="margin-top:8px;"><strong>Aidez un enfant :</strong> BE55 0689 4803 1244 (Communication : « J'aide un enfant Pelicano »)</p>
+      <p style="margin-top:8px;">
+        <a href="https://pelicano.be/fr/privacy-policy" target="_blank" rel="noopener">Privacy policy</a> ·
+        <a href="https://pelicano.be/fr/cookie-policy" target="_blank" rel="noopener">Cookie policy</a>
+      </p>
+    </div>
+    <div class="footer-bottom">
+      <span>© Fondation Reine Paola — Pelicano</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile sticky CTA -->
+<div class="sticky-cta">
+  <a class="btn btn-full" href="#top">Je demande le guide gratuit des legs</a>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const form = document.getElementById('contact-form');
+  const btn  = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      el.classList.remove('error');
+      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+    });
+    if (!valid) { form.querySelector('.error')?.focus(); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.classList.add('visible');
+      } else {
+ 
