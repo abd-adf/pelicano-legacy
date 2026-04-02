@@ -474,65 +474,19 @@
         <input type="hidden" name="form-name" value="pelicano-legs-nl">
         <input type="text" name="bot-field" style="display:none">
 
+        <!-- Keuze verzendmethode EERST -->
         <div class="field-group">
-          <label for="aanspreektitel">Aanspreektitel <span class="required-star">*</span></label>
-          <select id="aanspreektitel" name="aanspreektitel" required>
-            <option value="" disabled selected>Selecteer…</option>
-            <option value="Mevrouw">Mevrouw</option>
-            <option value="De heer">De heer</option>
-          </select>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="naam">Naam <span class="required-star">*</span></label>
-            <input type="text" id="naam" name="naam" placeholder="Janssen" required>
-          </div>
-          <div class="field-group">
-            <label for="voornaam">Voornaam</label>
-            <input type="text" id="voornaam" name="voornaam" placeholder="Marie">
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label for="adres">Adres <span class="required-star">*</span></label>
-          <input type="text" id="adres" name="adres" placeholder="Kerkstraat 12" required>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="postcode">Postcode <span class="required-star">*</span></label>
-            <input type="text" id="postcode" name="postcode" placeholder="1000" required inputmode="numeric">
-          </div>
-          <div class="field-group">
-            <label for="gemeente">Gemeente <span class="required-star">*</span></label>
-            <input type="text" id="gemeente" name="gemeente" placeholder="Brussel" required>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="marie@voorbeeld.be">
-          </div>
-          <div class="field-group">
-            <label for="tel">Telefoon</label>
-            <input type="tel" id="tel" name="telefoon" placeholder="+32 4xx xx xx xx">
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label>Brochure ontvangen per <span class="required-star">*</span></label>
+          <label>Ik wil de brochure ontvangen per <span class="required-star">*</span></label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="verzending" value="E-mail" required>
+              <input type="radio" name="verzending" value="E-mail" id="verzending-email" required>
               <span class="radio-box">
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                 E-mail
               </span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="verzending" value="Post">
+              <input type="radio" name="verzending" value="Post" id="verzending-post">
               <span class="radio-box">
                 <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Gewone post
@@ -541,12 +495,69 @@
           </div>
         </div>
 
-        <p class="privacy-note">
+        <!-- Gemeenschappelijke velden: Aanspreektitel / Naam / Voornaam -->
+        <div id="fields-common" style="display:none;">
+          <div class="field-group">
+            <label for="aanspreektitel">Aanspreektitel <span class="required-star">*</span></label>
+            <select id="aanspreektitel" name="aanspreektitel" required>
+              <option value="" disabled selected>Selecteer…</option>
+              <option value="Mevrouw">Mevrouw</option>
+              <option value="De heer">De heer</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="naam">Naam <span class="required-star">*</span></label>
+              <input type="text" id="naam" name="naam" placeholder="Janssen" required>
+            </div>
+            <div class="field-group">
+              <label for="voornaam">Voornaam</label>
+              <input type="text" id="voornaam" name="voornaam" placeholder="Marie">
+            </div>
+          </div>
+        </div>
+
+        <!-- Specifieke velden EMAIL -->
+        <div id="fields-email" style="display:none;">
+          <div class="field-group">
+            <label for="email">E-mail <span class="required-star">*</span></label>
+            <input type="email" id="email" name="email" placeholder="marie@voorbeeld.be">
+          </div>
+          <div class="field-group">
+            <label for="tel">Telefoon</label>
+            <input type="tel" id="tel" name="telefoon" placeholder="+32 4xx xx xx xx">
+          </div>
+        </div>
+
+        <!-- Specifieke velden POST -->
+        <div id="fields-post" style="display:none;">
+          <div class="field-group">
+            <label for="adres">Adres <span class="required-star">*</span></label>
+            <input type="text" id="adres" name="adres" placeholder="Kerkstraat 12">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="postcode">Postcode <span class="required-star">*</span></label>
+              <input type="text" id="postcode" name="postcode" placeholder="1000" inputmode="numeric">
+            </div>
+            <div class="field-group">
+              <label for="gemeente">Gemeente <span class="required-star">*</span></label>
+              <input type="text" id="gemeente" name="gemeente" placeholder="Brussel">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="tel-post">Telefoon</label>
+            <input type="tel" id="tel-post" name="telefoon" placeholder="+32 4xx xx xx xx">
+          </div>
+        </div>
+
+        <p class="privacy-note" id="privacy-note" style="display:none;">
           Gegevens uitsluitend gebruikt voor het verzenden van documentatie · nooit doorgegeven aan derden ·
           <a href="https://pelicano.be/nl/privacy-policy" target="_blank" rel="noopener">Privacybeleid</a>
         </p>
 
-        <button type="submit" class="btn btn-full" id="submit-btn">IK BEVESTIG</button>
+        <button type="submit" class="btn btn-full" id="submit-btn" style="display:none;">STUUR MIJ DE BROCHURE</button>
       </form>
 
       <div class="success-box" id="success-msg">
@@ -636,6 +647,11 @@
 
 </main>
 
+<!-- CTA voor footer -->
+<div class="cta-band" style="text-align:center;padding:48px 20px;">
+  <a class="btn btn-full" href="#top" style="max-width:420px;margin:0 auto;">STUUR MIJ DE BROCHURE</a>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -668,8 +684,50 @@
 </div>
 
 <script>
-  const form = document.getElementById('contact-form');
-  const btn  = document.getElementById('submit-btn');
+  // Logica dynamisch formulier NL
+  const verzendingRadios = document.querySelectorAll('input[name="verzending"]');
+  const fieldsCommon = document.getElementById('fields-common');
+  const fieldsEmail  = document.getElementById('fields-email');
+  const fieldsPost   = document.getElementById('fields-post');
+  const privacyNote  = document.getElementById('privacy-note');
+  const submitBtn    = document.getElementById('submit-btn');
+
+  const emailInput   = document.getElementById('email');
+  const adresInput   = document.getElementById('adres');
+  const postcodeInput= document.getElementById('postcode');
+  const gemeenteInput= document.getElementById('gemeente');
+
+  function toggleFields(mode) {
+    fieldsCommon.style.display = 'block';
+    privacyNote.style.display  = 'block';
+    submitBtn.style.display    = 'flex';
+
+    if (mode === 'E-mail') {
+      fieldsEmail.style.display = 'block';
+      fieldsPost.style.display  = 'none';
+      emailInput.required    = true;
+      adresInput.required    = false;
+      postcodeInput.required = false;
+      gemeenteInput.required = false;
+    } else {
+      fieldsEmail.style.display = 'none';
+      fieldsPost.style.display  = 'block';
+      emailInput.required    = false;
+      adresInput.required    = true;
+      postcodeInput.required = true;
+      gemeenteInput.required = true;
+    }
+  }
+
+  verzendingRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      toggleFields(this.value);
+    });
+  });
+
+  // Formulier verzenden
+  const form       = document.getElementById('contact-form');
+  const btn        = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success-msg');
 
   form.addEventListener('submit', async function(e) {
@@ -698,12 +756,12 @@
         window.dataLayer.push({ event: 'form_submit' });
       } else {
         btn.disabled = false;
-        btn.textContent = 'IK BEVESTIG';
+        btn.textContent = 'STUUR MIJ DE BROCHURE';
         alert('Er is een fout opgetreden. Probeer het opnieuw.');
       }
     } catch {
       btn.disabled = false;
-      btn.textContent = 'IK BEVESTIG';
+      btn.textContent = 'STUUR MIJ DE BROCHURE';
       alert('Er is een fout opgetreden. Probeer het opnieuw.');
     }
   });

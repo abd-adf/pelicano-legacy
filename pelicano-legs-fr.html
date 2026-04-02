@@ -238,6 +238,12 @@
     }
     .radio-option input:checked + .radio-box svg { stroke: var(--red); }
 
+    /* Champs conditionnels */
+    .fields-email,
+    .fields-post { display: none; }
+    .fields-email.active,
+    .fields-post.active { display: block; }
+
     .privacy-note {
       font-size: .85rem; color: var(--muted); font-weight: 400;
       text-align: center; margin: 14px 0 18px; line-height: 1.5;
@@ -336,6 +342,11 @@
     .ruth-sig  { font-size: .95rem; font-weight: 600; color: var(--red); }
     .ruth-contact { margin-top: 3px; font-size: .95rem; color: var(--muted); }
     .ruth-contact a { color: var(--red); font-weight: 500; }
+
+    /* CTA bloc avant footer */
+    .cta-band {
+      text-align: center; padding: 48px 20px;
+    }
 
     /* Footer */
     footer {
@@ -473,77 +484,23 @@
       <h2>Recevez votre documentation<br>gratuite en toute confidentialité</h2>
       <p class="hero-form-lead">Sans engagement · Documentation gratuite · Réponse personnelle de Ruth</p>
 
-      <!--
-        ╔══════════════════════════════════════════════════════════════╗
-        ║  FORMSPREE — remplace YOUR_FORM_ID par ton ID réel          ║
-        ║  1. https://formspree.io → créer un compte gratuit          ║
-        ║  2. New Form → copie l'ID (ex: xwkgjbzq)                   ║
-        ║  3. Remplace YOUR_FORM_ID ci-dessous                        ║
-        ╚══════════════════════════════════════════════════════════════╝
-      -->
       <form id="contact-form" name="pelicano-legs-fr" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
         <input type="hidden" name="form-name" value="pelicano-legs-fr">
         <input type="text" name="bot-field" style="display:none">
 
+        <!-- Choix du mode d'envoi EN PREMIER -->
         <div class="field-group">
-          <label for="civilite">Civilité <span class="required-star">*</span></label>
-          <select id="civilite" name="civilite" required>
-            <option value="" disabled selected>Sélectionner…</option>
-            <option value="Madame">Madame</option>
-            <option value="Monsieur">Monsieur</option>
-          </select>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="nom">Nom <span class="required-star">*</span></label>
-            <input type="text" id="nom" name="nom" placeholder="Dupont" required>
-          </div>
-          <div class="field-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Marie">
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label for="adresse">Adresse <span class="required-star">*</span></label>
-          <input type="text" id="adresse" name="adresse" placeholder="Rue de l'Église 12" required>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="cp">Code postal <span class="required-star">*</span></label>
-            <input type="text" id="cp" name="code_postal" placeholder="1000" required inputmode="numeric">
-          </div>
-          <div class="field-group">
-            <label for="ville">Ville <span class="required-star">*</span></label>
-            <input type="text" id="ville" name="ville" placeholder="Bruxelles" required>
-          </div>
-        </div>
-
-        <div class="field-row">
-          <div class="field-group">
-            <label for="email">E-mail</label>
-            <input type="email" id="email" name="email" placeholder="marie@exemple.be">
-          </div>
-          <div class="field-group">
-            <label for="tel">Téléphone</label>
-            <input type="tel" id="tel" name="telephone" placeholder="+32 4xx xx xx xx">
-          </div>
-        </div>
-
-        <div class="field-group">
-          <label>Recevoir la brochure par <span class="required-star">*</span></label>
+          <label>Je souhaite recevoir la brochure par <span class="required-star">*</span></label>
           <div class="radio-group">
             <label class="radio-option">
-              <input type="radio" name="envoi" value="Email" required>
+              <input type="radio" name="envoi" value="Email" id="envoi-email" required>
               <span class="radio-box">
                 <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
                 E-mail
               </span>
             </label>
             <label class="radio-option">
-              <input type="radio" name="envoi" value="Courrier">
+              <input type="radio" name="envoi" value="Courrier" id="envoi-post">
               <span class="radio-box">
                 <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Courrier postal
@@ -552,12 +509,69 @@
           </div>
         </div>
 
-        <p class="privacy-note">
+        <!-- Champs communs : Civilité / Nom / Prénom (toujours visibles après choix) -->
+        <div id="fields-common" style="display:none;">
+          <div class="field-group">
+            <label for="civilite">Civilité <span class="required-star">*</span></label>
+            <select id="civilite" name="civilite" required>
+              <option value="" disabled selected>Sélectionner…</option>
+              <option value="Madame">Madame</option>
+              <option value="Monsieur">Monsieur</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field-group">
+              <label for="nom">Nom <span class="required-star">*</span></label>
+              <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+            </div>
+            <div class="field-group">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Marie">
+            </div>
+          </div>
+        </div>
+
+        <!-- Champs spécifiques EMAIL -->
+        <div id="fields-email" style="display:none;">
+          <div class="field-group">
+            <label for="email">E-mail <span class="required-star">*</span></label>
+            <input type="email" id="email" name="email" placeholder="marie@exemple.be">
+          </div>
+          <div class="field-group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="telephone" placeholder="+32 4xx xx xx xx">
+          </div>
+        </div>
+
+        <!-- Champs spécifiques COURRIER POSTAL -->
+        <div id="fields-post" style="display:none;">
+          <div class="field-group">
+            <label for="adresse">Adresse <span class="required-star">*</span></label>
+            <input type="text" id="adresse" name="adresse" placeholder="Rue de l'Église 12">
+          </div>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="cp">Code postal <span class="required-star">*</span></label>
+              <input type="text" id="cp" name="code_postal" placeholder="1000" inputmode="numeric">
+            </div>
+            <div class="field-group">
+              <label for="ville">Ville <span class="required-star">*</span></label>
+              <input type="text" id="ville" name="ville" placeholder="Bruxelles">
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="tel-post">Téléphone</label>
+            <input type="tel" id="tel-post" name="telephone" placeholder="+32 4xx xx xx xx">
+          </div>
+        </div>
+
+        <p class="privacy-note" id="privacy-note" style="display:none;">
           Données utilisées uniquement pour l'envoi de documentation · jamais transmises à des tiers ·
           <a href="https://pelicano.be/fr/privacy-policy" target="_blank" rel="noopener">Privacy policy</a>
         </p>
 
-        <button type="submit" class="btn btn-full" id="submit-btn">JE VALIDE</button>
+        <button type="submit" class="btn btn-full" id="submit-btn" style="display:none;">JE DEMANDE LA BROCHURE</button>
       </form>
 
       <div class="success-box" id="success-msg">
@@ -647,6 +661,11 @@
 
 </main>
 
+<!-- CTA avant footer -->
+<div class="cta-band">
+  <a class="btn btn-full" href="#top" style="max-width:420px;margin:0 auto;">JE DEMANDE LA BROCHURE</a>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -679,8 +698,51 @@
 </div>
 
 <script>
-  const form = document.getElementById('contact-form');
-  const btn  = document.getElementById('submit-btn');
+  // Logique formulaire dynamique FR
+  const envoiRadios = document.querySelectorAll('input[name="envoi"]');
+  const fieldsCommon = document.getElementById('fields-common');
+  const fieldsEmail  = document.getElementById('fields-email');
+  const fieldsPost   = document.getElementById('fields-post');
+  const privacyNote  = document.getElementById('privacy-note');
+  const submitBtn    = document.getElementById('submit-btn');
+
+  const emailInput   = document.getElementById('email');
+  const adresseInput = document.getElementById('adresse');
+  const cpInput      = document.getElementById('cp');
+  const villeInput   = document.getElementById('ville');
+
+  function toggleFields(mode) {
+    fieldsCommon.style.display = 'block';
+    privacyNote.style.display  = 'block';
+    submitBtn.style.display    = 'flex';
+
+    if (mode === 'Email') {
+      fieldsEmail.style.display = 'block';
+      fieldsPost.style.display  = 'none';
+      // Rendre email requis, enlever required sur adresse/cp/ville
+      emailInput.required   = true;
+      adresseInput.required = false;
+      cpInput.required      = false;
+      villeInput.required   = false;
+    } else {
+      fieldsEmail.style.display = 'none';
+      fieldsPost.style.display  = 'block';
+      emailInput.required   = false;
+      adresseInput.required = true;
+      cpInput.required      = true;
+      villeInput.required   = true;
+    }
+  }
+
+  envoiRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      toggleFields(this.value);
+    });
+  });
+
+  // Soumission formulaire
+  const form       = document.getElementById('contact-form');
+  const btn        = document.getElementById('submit-btn');
   const successMsg = document.getElementById('success-msg');
 
   form.addEventListener('submit', async function(e) {
@@ -708,3 +770,16 @@
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'form_submit' });
       } else {
+        btn.disabled = false;
+        btn.textContent = 'JE DEMANDE LA BROCHURE';
+        alert('Une erreur est survenue. Veuillez réessayer.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'JE DEMANDE LA BROCHURE';
+      alert('Une erreur est survenue. Veuillez réessayer.');
+    }
+  });
+</script>
+</body>
+</html>
