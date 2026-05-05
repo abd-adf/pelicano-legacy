@@ -478,6 +478,27 @@
         <input type="hidden" name="utm_medium" id="utm_medium">
         <input type="hidden" name="utm_content" id="utm_content">
 
+        <!-- Keuze verzendmethode -->
+        <div class="field-group">
+          <label>Ik wil de brochure ontvangen per <span class="required-star">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="verzending" value="E-mail" id="verzending-email" required>
+              <span class="radio-box">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                E-mail
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="verzending" value="Post" id="verzending-post">
+              <span class="radio-box">
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Gewone post
+              </span>
+            </label>
+          </div>
+        </div>
+
         <div class="field-group">
           <label for="aanspreektitel">Aanspreektitel <span class="required-star">*</span></label>
           <select id="aanspreektitel" name="aanspreektitel" required>
